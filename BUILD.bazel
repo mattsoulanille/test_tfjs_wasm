@@ -1,0 +1,26 @@
+load("@npm//@bazel/typescript:index.bzl", "ts_library")
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+exports_files(["tsconfig.json", "rollup.config.js"])
+
+ts_library(
+    name = "server_library",
+    srcs = [
+        "server.ts",
+    ],
+    deps = [
+        "@npm//express",
+        "@npm//@types/express",
+        "@npm//@types/node",
+    ]
+)
+
+nodejs_binary(
+    name = "server_binary",
+    entry_point = "server.ts",
+    data = [
+        ":server_library",
+        "//src:index_bundle",
+        ":index.html",
+        "@npm//@tensorflow/tfjs-backend-wasm",
+    ]
+)

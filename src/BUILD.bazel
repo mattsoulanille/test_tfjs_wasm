@@ -1,0 +1,29 @@
+load("@npm//@bazel/typescript:index.bzl", "ts_library")
+load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
+
+ts_library(
+    name = "index_library",
+    srcs = [
+        "index.ts",
+    ],
+    deps = [
+        "@npm//@tensorflow/tfjs-core",
+        "@npm//@tensorflow/tfjs-backend-wasm",
+    ]
+)
+
+rollup_bundle(
+    name = "index_bundle",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":index_library",
+        "@npm//@rollup/plugin-node-resolve",
+        "@npm//@rollup/plugin-commonjs",
+        "@npm//rollup-plugin-sourcemaps",
+    ],
+    entry_point = "index.ts",
+    config_file = "//:rollup.config.js",
+    sourcemap = "inline",
+    format = "iife",
+)
+    
