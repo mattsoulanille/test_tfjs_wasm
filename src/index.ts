@@ -1,5 +1,4 @@
 import * as tf from "@tensorflow/tfjs-core";
-import "@tensorflow/tfjs-backend-wasm";
 import { setWasmPaths } from "@tensorflow/tfjs-backend-wasm";
 
 

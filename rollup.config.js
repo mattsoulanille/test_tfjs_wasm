@@ -1,15 +1,11 @@
-import nodeResolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
 import sourcemaps from 'rollup-plugin-sourcemaps';
 
 export default {
+  external: [
+    '@tensorflow/tfjs-core',
+    '@tensorflow/tfjs-backend-wasm'
+  ],
   plugins: [
-    nodeResolve({
-      browser:true,
-    }),
-    commonjs({
-      include: 'node_modules/**',
-    }),
     sourcemaps(),
   ],
 }

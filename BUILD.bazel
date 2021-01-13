@@ -22,5 +22,6 @@ nodejs_binary(
         "//src:index_bundle",
         ":index.html",
         "@npm//@tensorflow/tfjs-backend-wasm",
+        "@npm//@tensorflow/tfjs-core",
     ]
 )

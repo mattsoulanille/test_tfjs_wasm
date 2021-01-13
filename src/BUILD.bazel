@@ -14,6 +14,10 @@ ts_library(
 
 rollup_bundle(
     name = "index_bundle",
+    args = [
+        "--globals",
+        "@tensorflow/tfjs-core:tf,@tensorflow/tfjs-backend-wasm:tf.wasm",
+    ],
     visibility = ["//visibility:public"],
     deps = [
         ":index_library",
